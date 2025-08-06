@@ -2,7 +2,7 @@
 python = "3.11"
 
 [phases.setup]
-cmds = ["apt-get update && apt-get install -y gcc"]
+nixpkgs = ["python311", "gcc"]
 
 [phases.install]
 cmds = [
@@ -10,9 +10,6 @@ cmds = [
   ". /opt/venv/bin/activate && pip install --upgrade pip",
   ". /opt/venv/bin/activate && pip install -r requirements.txt"
 ]
-
-[phases.build]
-cmds = ["echo 'Build complete'"]
 
 [start]
 cmd = ". /opt/venv/bin/activate && gunicorn app:app --bind 0.0.0.0:$PORT"
