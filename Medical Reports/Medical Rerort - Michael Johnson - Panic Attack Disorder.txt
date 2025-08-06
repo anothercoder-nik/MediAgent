@@ -1,0 +1,29 @@
+Medical Case Report
+Patient ID: 345679
+Name: Sarah Thompson
+Age: 54
+Gender: Female
+Date of Report: 2024-09-05
+
+Chief Complaint:
+The patient reports recurrent episodes of chest discomfort described as pressure or squeezing, triggered by physical exertion or emotional stress, lasting 5-15 minutes. Symptoms improve with rest or nitroglycerin use. The patient denies syncope or palpitations.
+
+Medical History:
+Family History: Father had myocardial infarction at age 60; mother has hypertension.
+Personal Medical History:
+Hypertension: Diagnosed at age 50; controlled with lisinopril.
+Hyperlipidemia: Diagnosed at age 52; managed with atorvastatin.
+Lifestyle Factors: Sedentary lifestyle; occasional smoker; diet high in saturated fats.
+Medications: Lisinopril (10 mg daily), Atorvastatin (20 mg daily), Nitroglycerin as needed.
+C:\Users\DarkSlayer\AI-Agents-for-Medical-Diagnostics\Medical Reports\Medical Rerort - Michael Johnson - Panic Attack Disorder.txt
+Recent Lab and Diagnostic Results:
+Electrocardiogram (ECG): Normal sinus rhythm with nonspecific ST changes.
+Blood Tests: Elevated LDL cholesterol (160 mg/dL); normal cardiac enzymes.
+Stress Test (Treadmill): Reproducible chest pain at moderate exertion with 1 mm ST depression in leads V4-V6.
+Echocardiogram: Mild left ventricular hypertrophy; ejection fraction 55%.
+
+Physical Examination Findings:
+Vital Signs: Blood pressure 138/85 mmHg, heart rate 78 bpm, BMI 27.1.
+Cardiovascular Exam: Regular rhythm; no murmurs or gallops.
+Respiratory Exam: Clear to auscultation bilaterally.
+
