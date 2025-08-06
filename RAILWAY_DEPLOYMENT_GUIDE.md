@@ -109,44 +109,75 @@ POST https://your-app.railway.app/generate-pdf
 
 ## Troubleshooting
 
-### Common Issues
+### Common Build Issues
 
-1. **Build Failures**
-   - Check `requirements_api.txt` for correct dependencies
-   - Verify Python version in `runtime.txt`
-   - Check Railway build logs
+1. **"No start command could be found"**
+   - ✅ Fixed: Added explicit start command in `railway.json`
+   - ✅ Fixed: Updated `Procfile` with proper gunicorn configuration
+   - ✅ Fixed: Created `nixpacks.toml` for explicit build instructions
 
-2. **Environment Variable Issues**
-   - Ensure `OPENROUTER_API_KEY` is set correctly
-   - Verify variable names match your code
+2. **Nixpacks Build Failed**
+   - ✅ Fixed: Cleaned up `requirements.txt` to remove problematic dependencies
+   - ✅ Fixed: Added explicit Python version in `runtime.txt`
+   - ✅ Fixed: Added build commands in `railway.json`
 
-3. **File Upload Issues**
-   - Railway has ephemeral file systems
-   - Files are deleted on app restart
-   - Consider using cloud storage for production
+3. **Import Errors**
+   - ✅ Fixed: Verified all imports in `Utils/Agents.py`
+   - ✅ Fixed: Simplified dependency list to essential packages only
 
-4. **Memory Issues**
-   - Railway free tier has memory limits
-   - Optimize PDF generation for large files
-   - Consider upgrading plan for heavy usage
+### Railway-Specific Fixes Applied
 
-### Debug Tips
+1. **Clean requirements.txt**: Removed unnecessary langchain dependencies that cause build issues
+2. **Explicit Start Command**: Added start command in multiple places:
+   - `Procfile`: `web: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120`
+   - `railway.json`: `"startCommand": "gunicorn app:app --bind 0.0.0.0:$PORT"`
+   - `nixpacks.toml`: Full build configuration
+3. **Python Version**: Specified `python-3.11.5` in `runtime.txt`
+4. **Build Configuration**: Added explicit build commands in `railway.json`
 
-1. **Check Logs**
-   ```bash
-   railway logs
-   ```
+### Debug Steps for Railway
 
-2. **Test Locally First**
-   ```bash
-   pip install -r requirements_api.txt
-   python app.py
-   ```
+1. **Check Build Logs**
+   - Go to Railway dashboard → Your project → Deployments
+   - Click on the failed deployment to see detailed logs
+   - Look for specific error messages
 
-3. **Environment Variables**
-   ```bash
-   railway variables
-   ```
+2. **Environment Variables**
+   - Ensure `OPENROUTER_API_KEY` is set in Railway variables
+   - Set `FLASK_ENV=production`
+
+3. **Force Rebuild**
+   - In Railway dashboard, click "Redeploy"
+   - Or push a new commit to trigger rebuild
+
+### Alternative Deployment Method
+
+If Railway still has issues, try this manual approach:
+
+1. **Use GitHub Integration**
+   - Push your code to GitHub
+   - Connect Railway to your GitHub repo
+   - Let Railway auto-detect and deploy
+
+2. **Manual Configuration**
+   - In Railway dashboard, set Build Command: `pip install -r requirements.txt`
+   - Set Start Command: `gunicorn app:app --bind 0.0.0.0:$PORT`
+
+### Testing Deployment
+
+After successful deployment, test these endpoints:
+
+```bash
+# Health check
+curl https://your-app.railway.app/health
+
+# Expected response:
+{
+  "status": "healthy",
+  "timestamp": "2025-08-07T...",
+  "service": "Medical Diagnostics API"
+}
+```
 
 ## Production Considerations
 
