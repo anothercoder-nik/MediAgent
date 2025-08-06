@@ -2,9 +2,15 @@ langchain
 langchain-community 
 langchain-openai
 langchain-experimental
-python-dotenv
 langchain_ollama
-reportlab
 rich
 pdflab
 PyMuPDF
+Flask>=2.3.0
+Werkzeug>=2.3.0
+python-dotenv>=1.0.0
+openai>=1.0.0
+reportlab>=4.0.0
+requests>=2.31.0
+markdown>=3.4.0
+beautifulsoup4>=4.12.0
