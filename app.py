@@ -14,7 +14,10 @@ from Utils.Agents import (
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
-app.config['UPLOAD_FOLDER'] = 'uploads'
+
+# Use a more Railway-friendly upload path
+upload_folder = os.environ.get('UPLOAD_FOLDER', 'uploads')
+app.config['UPLOAD_FOLDER'] = upload_folder
 
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -401,5 +404,11 @@ def internal_error(e):
     return jsonify({"error": "Internal server error"}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Get port from environment variable (Railway sets this automatically)
+    port = int(os.environ.get('PORT', 5000))
+    
+    # Use debug=False for production
+    debug_mode = os.environ.get('FLASK_ENV') == 'development'
+    
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
 
